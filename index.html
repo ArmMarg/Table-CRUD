@@ -1,0 +1,125 @@
+<html>
+<head>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>Angular Table</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <style>
+        #mytable input {
+            width: 100%;
+        }
+    </style>
+</head>
+<body ng-app="myApp" ng-controller="MainController" style="background-color: #f8f8f8">
+
+<nav class="navbar navbar-default navbar-fixed-top navbar-font" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#left-menu-item">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/"><img src="img/logo.png" class="img-responsive" style="height:36px;"
+                                                   alt="Logo"></a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="left-menu-item">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a data-toggle="dropdown" aria-expanded="false">
+                        <img src="img/profilePic.png"/><span class="inputLabel"
+                                                             style="margin-left: 10px;margin-right: 5px;">Welcome  Guest</span>
+                    </a>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div>
+</nav>
+
+<div class="container" style="margin: 150px auto">
+    <div class="row">
+        <button type="button" style="float:right;margin-bottom: 10px;" class="btn btn-info " ng-click="addEmployee()">
+            Add Employee
+        </button>
+        <div class="col-md-12">
+
+            <div class="table-responsive">
+                <form id="empform" ng-submit="submitEmployee()">
+                    <table id="mytable" class="table table-bordered">
+
+                        <thead>
+                        <th style="width:5%;">ID</th>
+                        <th style="width:10%;">Phone Number</th>
+                        <th style="width:15%;">Email</th>
+                        <th style="width:10%;">First Name</th>
+                        <th style="width:10%;">Last Name</th>
+                        <th style="width:10%;">Salary</th>
+                        <th style="width:15%;">Project Name</th>
+                        <th style="width:10%;">Photos</th>
+                        <th style="width:25%;">Actions</th>
+                        </thead>
+
+                        <tbody>
+
+                        <tr ng-repeat="emp in empoyees">
+                            <td>{{$index+1}}</td>
+                            <td>
+                                <input name="empId{{$index}}" ng-model="emp.empId"
+                                       ng-disabled="!enabledEdit[{{$index}}]"/>
+
+                            </td>
+                            <td>
+                                <input name="email{{$index}}" ng-model="emp.email"
+                                       ng-disabled="!enabledEdit[{{$index}}]"/>
+                            </td>
+                            <td>
+                                <input name="firstName{{$index}}" ng-model="emp.firstName"
+                                       ng-disabled="!enabledEdit[{{$index}}]"/>
+                            </td>
+                            <td>
+                                <input name="lastName{{$index}}" ng-model="emp.lastName"
+                                       ng-disabled="!enabledEdit[{{$index}}]"/>
+                            </td>
+                            <td>
+                                <input name="designation{{$index}}" ng-model="emp.designation"
+                                       ng-disabled="!enabledEdit[{{$index}}]"/>
+                            </td>
+                            <td>
+                                <input name="project{{$index}}" ng-model="emp.project"
+                                       ng-disabled="!enabledEdit[{{$index}}]"/>
+                            </td>
+                            <td>
+                                <img src="https://hunyadi.info.hu/levente/images/stories/sigplus/birds1/IMG_0759.jpg"
+                                     alt="Smiley face" width="42" height="42">
+                            </td>
+                            <td>
+                                <div class="buttons">
+                                    <button class="btn btn-primary" ng-click="editEmployee($index)">Edit</button>
+                                    <button class="btn btn-danger" ng-click="deleteEmployee($index)">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+                    <input type="submit" class="btn btn-primary" value="Submit"/>
+                </form>
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+</body>
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+
+</html>
